@@ -1,0 +1,55 @@
+<h1>DragonBall Page</h1>
+<hr/>
+
+<section class="row">
+    <div class="col-12 col-sm-6">
+        <h3>Agregar: {{name()}} ({{power()}})</h3>
+        <input #txtName
+            type="text"
+            class="form-control"
+            placeholder="Nombre"
+            [value]="name()"
+            (input)="name.set(txtName.value)"
+        >
+        <input #txtPower
+            type="number"
+            class="form-control mt-2"
+            placeholder="Poder"
+            [value]="power()"
+            (input)="power.set(+txtPower.value)"
+        >
+        <button (click)="addCharacter()" class="mt-2 btn btn-primary">+</button>
+    </div>
+
+    <div class="col-12 col-sm-6">
+        <h3>Personajes fuertes</h3>
+        <ul>
+            @for (character of this.characters(); track character.id) {
+                @if (character.power > 500) {
+                    <li>
+                        <span>{{character.id}} - {{character.name}}</span>
+                        <strong
+                            [class.text-danger]="character.power > 9000"
+                            [class.text-primary]="character.power < 9000"
+                        >&nbsp;({{character.power}})</strong>
+                    </li>
+                }
+            }
+        </ul>
+
+        <h3>Personajes débiles</h3>
+        <ul>
+            @for (character of this.characters(); track character.id) {
+                @if (character.power <= 500) {
+                    <li>
+                        <span>{{character.id}} - {{character.name}}</span>
+                        <strong
+                            [class.text-danger]="character.power > 9000"
+                            [class.text-primary]="character.power < 9000"
+                        >&nbsp;({{character.power}})</strong>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,31 @@
+<h2>{{listName()}}</h2>
+
+<h3>Fuertes</h3>
+<ul>
+    @for (character of this.characters(); track character.id) {
+        @if (character.power > 500) {
+            <li>
+                <span>{{character.id}} - {{character.name}}</span>
+                <strong
+                    [class.text-danger]="character.power > 9000"
+                    [class.text-primary]="character.power < 9000"
+                >&nbsp;({{character.power}})</strong>
+            </li>
+        }
+    }
+</ul>
+
+<h3>Débiles</h3>
+<ul>
+    @for (character of this.characters(); track character.id) {
+        @if (character.power <= 500) {
+            <li>
+                <span>{{character.id}} - {{character.name}}</span>
+                <strong
+                    [class.text-danger]="character.power > 9000"
+                    [class.text-primary]="character.power < 9000"
+                >&nbsp;({{character.power}})</strong>
+            </li>
+        }
+    }
+</ul>
